@@ -8,7 +8,7 @@ router.get('/', function(req, res) {
   res.send('this is a my user hehe');
   res.end();
 });
-
+  
 router.post('/users', function(req, res) {
      userController.createUser(req.body, (err, result) => {
       if(err){
