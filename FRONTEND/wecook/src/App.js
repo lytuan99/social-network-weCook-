@@ -1,18 +1,19 @@
 import React from 'react';
 import './App.css';
-
+import {
+  
+} from "react-router-dom";
 import Header from './Components/otherUI/Header';
-import Login from './Components/user/Login';
 import Routing from './router/Routing';
 import Banner from './Components/otherUI/Banner';
 
 
 function App() {
   return (
-    <div>
-      <Header/>
-      <Banner/>
-      <Routing/>
+    <div> 
+      
+        <Header/>
+      
     </div>
 
   );

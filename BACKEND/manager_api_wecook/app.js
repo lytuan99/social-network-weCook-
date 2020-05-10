@@ -1,6 +1,7 @@
 var express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const cors = require("cors");
 const connectDB = require('./models/connect');
 
  var indexRouter = require('./routes/index');
@@ -17,9 +18,10 @@ app.get('/', (req, res) => {
 // view engine setup
 app.use(express.json());
 app.use(bodyParser.json());
+app.use(cors());
 
- app.use('/', indexRouter);
- app.use('/users', usersRouter);
+
+ app.use('/', usersRouter);
 
 
 module.exports = app;
