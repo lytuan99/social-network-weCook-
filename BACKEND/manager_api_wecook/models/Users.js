@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const UserSchema = mongoose.Schema({
+const UserSchema = new mongoose.Schema({
     name : {   
         type: String,
         required : true
@@ -45,34 +45,15 @@ const UserSchema = mongoose.Schema({
     modifiedTime : {
         type: Date,
         default: Date.now
-    }
+    },
+
+    roles: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Role"
+        }
+    ]
 });
 var User = mongoose.model('User',UserSchema);
 
-const createUser = function(userReq, done){
-    let user = new User({
-        name : userReq.name,
-        password : userReq.pass,
-        gender : userReq.gender,
-        birthday: userReq.birthday,
-        city: userReq.city,
-        email: userReq.email,
-        phoneNumber: userReq.phoneNumber,
-        
-    })
-    console.log("tessssst : ");
-    console.log(user);
-    
-    user.save((err, user) =>{
-        if(err)
-            return done(err, null);
-        return done(err, user);
-    })
-
-}
-
-
-
-module.exports = {User,
-                createUser
-                };
+module.exports = User;
