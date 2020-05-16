@@ -56,3 +56,109 @@
     font-size: 15px;
     font-weight: bold;
 }
+
+.form-control-blog{
+	border-radius: 3px;
+    min-height: 50px;
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1.75rem;
+    line-height: 1.5;
+    color: #535455;
+    background-clip: padding-box;
+    border: 1px solid #cbcccc;
+    background: #adb0b3;
+}
+.form-control:focus{
+	border: 1px solid #474645;
+    box-shadow: none;
+    font-size: large;
+}
+.next-step{
+    background-color: #cbcccc;
+    text-align: center;
+}
+.next-step:hover{
+    cursor: crosshair;
+}
+input[type="file"] {
+    display: none;
+}
+  .js .inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.inputfile + label {
+    max-width: 80%;
+    font-size: 1.25rem;
+    /* 20px */
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    padding: 0.625rem 1.25rem;
+    /* 10px 20px */
+}
+
+.no-js .inputfile + label {
+    display: none;
+}
+
+.inputfile:focus + label,
+.inputfile.has-focus + label {
+    outline: 1px dotted #000;
+    outline: -webkit-focus-ring-color auto 5px;
+}
+
+.inputfile + label svg {
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+    fill: currentColor;
+    margin-top: -0.25em;
+    /* 4px */
+    margin-right: 0.25em;
+    /* 4px */
+}
+
+  
+.inputfile-1 + label {
+    color: #f1e5e6;
+    background-color: #f15f0a;
+}
+
+.inputfile-1:focus + label,
+.inputfile-1.has-focus + label,
+.inputfile-1 + label:hover {
+    background-color: #b94b18;
+}
+
+.box {
+	background-color: #ec9f7a;
+    padding: 2.25rem 3.25rem;
+}
+
+.box + .box {
+	margin-top: 2.5rem;
+}
+
+.save-blog{
+    
+    margin-top: 50px;
+    background: #f05209;
+    border: 1px solid #f33d3d;
+    border-radius: 3px;
+    width: 80px;
+    height: 80%;
+    font-size: large;
+    font-weight: 700;
+
+}

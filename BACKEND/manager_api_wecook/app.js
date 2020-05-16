@@ -4,9 +4,8 @@ const bodyParser = require('body-parser');
 const cors = require("cors");
 const connectDB = require('./models/connect');
 
- var indexRouter = require('./routes/index');
- var usersRouter = require('./routes/users');
-
+ var userRouter = require('./routes/usersRoute');
+ var blogRouter = require('./routes/blogRoute');
 connectDB();
 
 var app = express();
@@ -21,7 +20,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 
- app.use('/', usersRouter);
-
+app.use('/', userRouter);
+app.use('/blogs', blogRouter);
 
 module.exports = app;

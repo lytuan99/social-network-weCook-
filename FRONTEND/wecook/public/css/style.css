@@ -306,11 +306,15 @@ button:focus{
 }
 
 #user_area .dropdown-toggle {
-    background-color: cornflowerblue;
+    background-color: #f19617;
     padding: 5px 10px;
     /* border: none; */
-    border-color: cornflowerblue;
+    border-color: #edca64;
     width: 160px;
+}
+
+#user_area .dropdown-toggle:hover{
+    background-color: #f35d49;
 }
 
 #user_area .dropdown-menu {

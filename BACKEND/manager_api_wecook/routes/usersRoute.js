@@ -24,6 +24,7 @@ router.post('/users', function(req, res) {
       else{
         let success = {status: true, userId: result.userId }
         res.json(JSON.stringify(success))
+        
         console.log('D O N E')
       }
     });
