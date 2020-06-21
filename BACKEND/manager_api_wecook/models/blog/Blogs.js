@@ -3,6 +3,16 @@ const mongoose = require('mongoose');
 const Blog = mongoose.model(
     "Blog", 
     new mongoose.Schema({
+
+        user: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User"
+        },
+
+        pathImageActive:{
+            type: String,
+            required: true
+        },
         title : {
             type: String,
             required: true
@@ -18,7 +28,7 @@ const Blog = mongoose.model(
                     type: String,
                     require: true
                 },
-                image: [{type: String}]
+                imagePaths: [{type: String}]
             }
         ],
 

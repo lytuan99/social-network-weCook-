@@ -12,6 +12,8 @@ export default class CurrentBlog extends Component {
                         <li><i className="zmdi zmdi-account" />Posted By : <span>Rubel Ahmed</span></li>
                         <li>|</li>
                         <li><i className="zmdi zmdi-time" />Time : <span>11.30 am</span></li>
+                        <li> |  </li>
+                        <span className="glyphicon glyphicon-heart text-danger" style={{fontSize: '13px'}} /> <span style={{fontSize: '13px'}} > 12</span>
                     </ul>
                     <h4>Duis feugiat neque sed dolor cursus, sed lacinia nisl pretium.</h4>
                 </div>

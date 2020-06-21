@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 
 var User = require('../models/Users');
 var Role = require('../models/Roles');
+
 const createUser = function (userReq, done) {
 
     User.findOne({ 'name': userReq.name }, (err, doc) => {

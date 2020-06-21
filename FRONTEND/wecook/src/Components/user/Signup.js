@@ -48,13 +48,6 @@ export default class Signup extends Component {
             var data = res.data
             if (data.status) {
                 this.setState({
-                    name: '',
-                    password: '',
-                    gender: '',
-                    birthday: null,
-                    email: '',
-                    phoneNumber: '',
-                    city: '',
                     signedUp: true
                 })
             }

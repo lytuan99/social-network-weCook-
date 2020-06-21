@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-let URL = "mongodb+srv://Lytuan:meodenlongtrang@wecook-zf9wh.gcp.mongodb.net/weCook?retryWrites=true&w=majority";
+let URL = "mongodb://127.0.0.1:27017/weCook";
 
  var connectDB = async () => {
      await mongoose.connect(URL,{

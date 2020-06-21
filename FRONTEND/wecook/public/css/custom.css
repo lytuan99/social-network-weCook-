@@ -58,7 +58,7 @@
 }
 
 .form-control-blog{
-	border-radius: 3px;
+	border-radius: 2px;
     min-height: 50px;
     display: block;
     width: 100%;
@@ -67,11 +67,11 @@
     line-height: 1.5;
     color: #535455;
     background-clip: padding-box;
-    border: 1px solid #cbcccc;
-    background: #adb0b3;
+    border: 1px solid #f8803a;
+    background: #d0e0ef;
 }
 .form-control:focus{
-	border: 1px solid #474645;
+	border: 1px solid #474745;
     box-shadow: none;
     font-size: large;
 }
@@ -82,9 +82,9 @@
 .next-step:hover{
     cursor: crosshair;
 }
-input[type="file"] {
+/* input[type="file"] {
     display: none;
-}
+} */
   .js .inputfile {
     width: 0.1px;
     height: 0.1px;

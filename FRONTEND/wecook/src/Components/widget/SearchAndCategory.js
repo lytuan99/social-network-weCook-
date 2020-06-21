@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 export default class SearchAndCategory extends Component {
     render() {
         return (
-            <div className="col-xl-4 col-lg-4 col-md-6 col-sm-8 col-12 blog-sidebar">
+            <div className=" blog-sidebar">
                 <div className="right-side-blog">
                     <h3>Search</h3>
                     <div className="blog-search-form">

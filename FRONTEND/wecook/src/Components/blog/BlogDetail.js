@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 export default class BlogDetail extends Component {
     render() {
         return (
-            <div className="col-xl-8 col-lg-8 col-12">
+            <div>
                 <div className="blog-inner-details-page">
                     <div className="blog-inner-box">
                         <div className="side-blog-img">
@@ -18,13 +18,47 @@ export default class BlogDetail extends Component {
                                 <li><i className="zmdi zmdi-account" />Posted By : <span>Rubel Ahmed</span></li>
                                 <li>|</li>
                                 <li><i className="zmdi zmdi-time" />Time : <span>11.30 am</span></li>
+                                <li>|</li>
+                                <span className="glyphicon glyphicon-heart text-danger" style={{fontSize: '20px'}} /> <span> 12</span>
                             </ul>
-                            <p>Vestibulum quis ultricies enim. Quisque eu sapien a erat congue lacinia bibendum ac massa. Morbi vehicula aliquet libero sit amet dictum. Integer vel mauris non magna consequat porttitor. Nulla facilisi. Suspendisse posuere, elit eu fringilla congue, turpis magna tempor odio, a placerat magna tortor a mauris. Phasellus lobortis turpis dui, eget mollis ex vestibulum auctor. Nunc viverra leo ut accumsan aliquet. Maecenas aliquam dolor eget felis bibendum blandit.</p>
-                            <p>Nunc iaculis, massa eget pellentesque mollis, nulla mauris aliquam eros, vitae condimentum leo nisl ut purus. Etiam nibh diam, vehicula non tincidunt id, consequat nec ex. Praesent vulputate sapien non tellus ultrices hendrerit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vivamus pellentesque arcu erat. Curabitur dapibus fringilla porta. Sed in neque sit amet ante feugiat blandit. Nulla fringilla purus diam, cursus venenatis diam luctus nec.</p>
+
                             <blockquote>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non feugiat lacus. Nunc nisi velit, consectetur vitae ex porttitor, placerat scelerisque mauris. Phasellus sit amet tincidunt metus, quis tempus ex. Quisque in lorem ut mi ullamcorper suscipit eu nec purus. Nam maximus sagittis iaculis.</p>
-                            </blockquote>
-                            <p>Vestibulum quis ultricies enim. Quisque eu sapien a erat congue lacinia bibendum ac massa. Morbi vehicula aliquet libero sit amet dictum. Integer vel mauris non magna consequat porttitor. Nulla facilisi. Suspendisse posuere, elit eu fringilla congue, turpis magna tempor odio, a placerat magna tortor a mauris.</p>
+                                    <h4>Nguyên liệu:</h4> <p>thịt chó, thịt lợn</p>
+                                </blockquote>
+                            <div>
+                                <blockquote>
+                                    <h4>Bước 1:</h4> <p>Title đặt ở đây</p>
+                                </blockquote>
+                                <div className="row">
+                                    <div className="col-lg-4">
+                                        <img src="imagesUpload/52665255_1269860966494253_5478119520625229824_n.jpg" alt="ảnh" width="100%" />
+                                    </div>
+                                    <div className="col-lg-4">
+                                        <img src="imagesUpload/artkajdf.png" alt="ảnh" width="100%" />
+                                    </div>
+                                    <div className="col-lg-4">
+                                        <img src="imagesUpload/artkajdf.png" alt="ảnh" width="100%" />
+                                    </div>
+                                </div>
+                            </div>
+                        <hr className="mt-3"></hr>
+                            <div>
+                                <blockquote>
+                                    <h4>Bước 1:</h4> <p>Title đặt ở đây</p>
+                                </blockquote>
+                                <div className="row">
+                                    <div className="col-lg-4">
+                                        <img src="imagesUpload/artkajdf.png" alt="ảnh" width="100%" />
+                                    </div>
+                                    <div className="col-lg-4">
+                                        <img src="imagesUpload/artkajdf.png" alt="ảnh" width="100%" />
+                                    </div>
+                                    <div className="col-lg-4">
+                                        <img src="imagesUpload/52665255_1269860966494253_5478119520625229824_n.jpg" alt="ảnh" width="100%" />
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                     <div className="blog-comment-box">

@@ -10,6 +10,7 @@ export default class Blog extends Component {
                     </div>
                     <div className="blog-detail">
                         <h4>Duis feugiat neque sed dolor cursus.</h4>
+                        <span className="glyphicon glyphicon-heart text-danger" style={{fontSize: '20px'}} /> <span> 12</span>
                         <ul>
                             <li><span>Post by Admin</span></li>
                             <li>|</li>

@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import {BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 import Login from '../user/Login';
 import Signup from '../user/Signup';
-import StartUser from '../user/StartUser';
 import PostBlog from '../blog/PostBlog';
 import Home from '../Home';
 import Banner from './Banner';
+import Profile from '../user/Profile';
 
 export default class Header extends Component {
 
@@ -19,11 +19,16 @@ export default class Header extends Component {
             showProfile: false
         }
     }
-
-
-
-    componentWillUpdate(nextProps, nextState) {
-
+    
+    componentDidUpdate(nextProps, nextState) {
+        if (localStorage.getItem('userLogin') !== null) {
+            this.setState({
+                showLogin: false,
+                showSignup: false,
+                showNewDish: true,
+                showProfile: true
+            })
+        }
     }
     // componentWillMount() {
     //     if(localStorage.getItem('userLogin') === null){
@@ -46,14 +51,7 @@ export default class Header extends Component {
     // }
 
     componentDidMount() {
-        if (localStorage.getItem('userLogin') !== null) {
-            this.setState({
-                showLogin: false,
-                showSignup: false,
-                showNewDish: true,
-                showProfile: true
-            })
-        }
+        
     }
 
 
@@ -110,7 +108,7 @@ export default class Header extends Component {
                                         </a>
                                         <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                             <a className="dropdown-item" href="/" id="mess">
-                                                Message
+                                                Notification
                                             <div id="mess_area">
                                                     <span id="count_mess">5</span>
                                                     <i className="fa fa-bell" id="bell_2" aria-hidden="true" />
@@ -118,7 +116,7 @@ export default class Header extends Component {
                                                 <i className="fa fa-caret-right" aria-hidden="true" />
                                                 <div id="detail_mess_area">
                                                     <ul>
-                                                        <li>thong bao 1</li>
+                                                        <li>notify 1</li>
                                                         <li>thong bao 1</li>
                                                         <li>thong bao 1</li>
                                                         <li>thong bao 1</li>
@@ -127,8 +125,7 @@ export default class Header extends Component {
                                                 </div>
                                                 <style dangerouslySetInnerHTML={{ __html: "\n\t\t\t\t\t\t\t\t\t \n  \n\t\t\t\t\t\t\t\t  " }} />
                                             </a>
-                                            <a className="dropdown-item" href="/">Profile</a>
-                                            <a className="dropdown-item" href="/">Don hang</a>
+                                            <Link to={"/profile"} className="dropdown-item">Profile</Link>
                                             <a className="dropdown-item" href="" onClick={this.logout}>Log Out</a>
                                         </div>
                                     </div>
@@ -148,7 +145,8 @@ export default class Header extends Component {
                         <Route exact path="/login" component={Login} />
                         <Route exact path="/signup" component={Signup} />
                         <Route exact path="/post-blog" component={PostBlog} />
-                        <Route exact path="/profile" component={StartUser} />
+                        <Route exact path="/profile" component={Profile} />
+                        
                     </Switch>
                 </div>
                 </header>
