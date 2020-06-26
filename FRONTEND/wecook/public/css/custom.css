@@ -40,7 +40,8 @@
     margin: 50px auto;
 }
 .login-form form {
-    margin-bottom: 15px;
+    margin-bottom: 240px;
+    margin-top: 100px;
     background: #f7f7f7;
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
     padding: 30px;
@@ -85,60 +86,52 @@
 /* input[type="file"] {
     display: none;
 } */
-  .js .inputfile {
-    width: 0.1px;
-    height: 0.1px;
-    opacity: 0;
+.fileupload {
+    height: 70px;
+    position: relative;
     overflow: hidden;
+    border: 1px solid saddlebrown;
+    text-align: center;
+    padding: 100px;
+}
+
+.fileupload input {
+
     position: absolute;
-    z-index: -1;
-}
-
-.inputfile + label {
-    max-width: 80%;
-    font-size: 1.25rem;
-    /* 20px */
-    font-weight: 700;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    top: 0;
+    right: 0; /* not left, because only the right part of the input seems to
+                 be clickable in some browser I can't remember */
     cursor: pointer;
-    display: inline-block;
-    overflow: hidden;
-    padding: 0.625rem 1.25rem;
-    /* 10px 20px */
+    opacity: 0.0;
+    filter: alpha(opacity=0); /* and all the other old opacity stuff you
+                                 want to support */
+    font-size: 300px; /* wtf, but apparently the most reliable way to make
+                         a large part of the input clickable in most browsers */
+    height: 200px;
 }
 
-.no-js .inputfile + label {
+.delete{
     display: none;
 }
-
-.inputfile:focus + label,
-.inputfile.has-focus + label {
-    outline: 1px dotted #000;
-    outline: -webkit-focus-ring-color auto 5px;
+.show-image:hover .delete {
+    display: block;
+}
+.show-image .delete {
+    position:absolute;
+    display:none;
 }
 
-.inputfile + label svg {
-    width: 1em;
-    height: 1em;
-    vertical-align: middle;
-    fill: currentColor;
-    margin-top: -0.25em;
-    /* 4px */
-    margin-right: 0.25em;
-    /* 4px */
+.show-image{
+    position: relative;
+    max-height: 300px;
+    overflow: hidden;
+    border: 1px solid saddlebrown;
+    text-align: center;
 }
 
-  
-.inputfile-1 + label {
-    color: #f1e5e6;
-    background-color: #f15f0a;
-}
-
-.inputfile-1:focus + label,
-.inputfile-1.has-focus + label,
-.inputfile-1 + label:hover {
-    background-color: #b94b18;
+div.show-image button.delete {
+    top:40%;
+    left: 45%;
 }
 
 .box {

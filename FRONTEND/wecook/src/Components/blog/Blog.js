@@ -1,27 +1,35 @@
 import React, { Component } from 'react'
+import { Button, Avatar, Card } from 'antd';
+import { EditOutlined, SaveOutlined, UserOutlined } from '@ant-design/icons';
 
-export default class Blog extends Component {
-    render() {
-        return (
-            <div className="col-lg-4 col-md-6 col-12">
-                <div className="blog-box-inner">
-                    <div className="blog-img-box">
-                        <img className="img-fluid" src="images/blog-img-09.jpg" alt="" />
-                    </div>
-                    <div className="blog-detail">
-                        <h4>Duis feugiat neque sed dolor cursus.</h4>
-                        <span className="glyphicon glyphicon-heart text-danger" style={{fontSize: '20px'}} /> <span> 12</span>
-                        <ul>
-                            <li><span>Post by Admin</span></li>
-                            <li>|</li>
-                            <li><span>27 February 2018</span></li>
-                        </ul>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque auctor suscipit feugiat. Ut at pellentesque ante, sed convallis arcu. Nullam facilisis, eros in eleifend luctus, odio ante sodales augue, eget lacinia lectus erat et sem. </p>
-                        <p>Sed semper orci sit amet porta placerat. Etiam quis finibus eros. </p>
-                        <a className="btn btn-lg btn-circle btn-outline-new-white" href="#">Read More</a>
-                    </div>
+
+function Blog({blog}) {
+
+    const { Meta } = Card;
+    return (
+        <Card className="mx-2 my-4">
+            <div className="row">
+                    {/* add avatar in here */}
+                <div className="col-sm-2"><Avatar src="/images/img-03.jpg" size={40} icon={<UserOutlined />}/></div>
+                <div className="col-sm-8">
+                    <strong className="ml-2">{blog.user.name}</strong>
+                <p className="ml-2">2 giờ trước</p>
+                </div>
+                <div className="col-sm-2">
+    <span className="glyphicon glyphicon-heart">  {blog.favorites}</span>
                 </div>
             </div>
+            <hr style={{marginTop: '-10px'}}></hr>
+            <Card
+                hoverable
+                style={{ width: 240 }}
+                cover={<img alt="example" src={ blog.guideSteps[0].imagePaths[0]} />}
+            >
+                <Meta title={blog.title} description={blog.raw} />
+            </Card>
+        </Card>
+        
         )
-    }
 }
+
+export default Blog;

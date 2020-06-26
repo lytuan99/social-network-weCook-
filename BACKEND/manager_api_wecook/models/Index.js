@@ -3,9 +3,11 @@ mongoose.Promise = global.Promise;
 
 const db = {};
 db.mongoose = mongoose;
-db.user = require('../models/Users');
-db.role = require('../models/Roles');
+db.user = require('../models/user');
+db.role = require('../models/role');
 
 db.ROLES =['user', 'moderator'];
+
+
 
 module.exports = db;
