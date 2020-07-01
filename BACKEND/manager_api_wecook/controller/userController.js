@@ -6,7 +6,7 @@ const Constants = require('../constants/index')
 const config = require('../config/auth.config')
 const jwt = require('jsonwebtoken')
 const blogController = require('../controller/blogController');
-const Blog = require('../models/blog/blog');
+const Blog = require('../models/blog');
 
 
 const createUser = function (req, res) {
@@ -15,7 +15,7 @@ const createUser = function (req, res) {
         name: userReq.name,
         password: bcrypt.hashSync(userReq.password, 8),
         gender: userReq.gender,
-        birthday: userReq.birthday,
+        birthday: userReq.birthDay,
         city: userReq.city,
         email: userReq.email,
         phoneNumber: userReq.phoneNumber
@@ -103,7 +103,8 @@ const loginUser = (req, res) => {
             name: user.name,
             email: user.email,
             roles: roles,
-            accessToken: token
+            accessToken: token,
+            avatar: user.avatar
 
         })
     })
@@ -122,11 +123,85 @@ const getProfile = async (req, res) =>{
   }
 }
 
+const updateUser = (req, res) => {
+  let user = req.body;
+  let response = User.findById(req.params.idUser, (err, doc) => {
+    if(err){
+      res.status(404).send('Not found id user')
+      return;
+    }
+    doc.gender = user.gender
+    doc.birthday = user.birthDay
+    doc.city = user.city
+    doc.phoneNumber = user.phoneNumber
+    doc.save((err, doc) => {
+      if(err){
+        res.status(500).send("error server!")
+        return;
+      }
+      res.status(200).send(doc);
+      console.log("U P D A T E OK")
+    })
+    
+  })
+}
+
+const changeAvatar = (req, res) => {
+  let idUser = req.params.idUser
+  let avatar = req.body.avatar
+  User.findByIdAndUpdate(idUser, {avatar: avatar}, (err, response) => {
+    if(response){
+      res.status(200).send({status: true, message:'upload thanh cong' })
+      return;
+    }
+    res.status(404).send({status: false, message: 'failed!'})
+  })
+}
+
+const getAllUser = async (req, res) => {
+  let users = await User.find().populate('role').exec();
+  res.status(200).send({status: true, users: users});
+}
+
+const countUser = async (req, res) => {
+  let count = await User.countDocuments({})
+  
+  if(count){
+    res.status(200).send({status: true, count: count})
+    return;
+  }
+  else{
+    res.status(500).send({status: false, message:"not available" })
+    return;
+  }
+}
+
+
+const countBlogOfUser = async (req, res) => {
+  let idUser = req.params.idUser
+  let countBlog = await Blog.count({user: idUser})
+  if(countBlog){
+    res.status(200).send({status: true, amountBlog: countBlog})
+    return;
+  }
+  else{
+    res.status(404).send({status: false, message:"not available" })
+    return;
+
+  }
+}
 
 
 module.exports = {
     createUser,
     loginUser,
-   getProfile
+   getProfile,
+   updateUser,
+   changeAvatar,
+   getAllUser,
+   countUser,
+   countBlogOfUser
+   
+
 
 }

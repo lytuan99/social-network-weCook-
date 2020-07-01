@@ -5,7 +5,10 @@ import UserAPI from '../../api/user'
 import ImageUpload from './ImageUpload'
 import PictureWall from './Upload'
 import { Redirect } from 'react-router-dom'
-import { Button, notification, Space, message} from 'antd';
+import { Button, notification, Space, Select, message } from 'antd';
+import { GlobalOutlined, LockOutlined, CameraOutlined } from '@ant-design/icons';
+
+
 const PATH_UPLOAD = 'imagesUpload/'
 
 function PostBlog(props) {
@@ -15,10 +18,10 @@ function PostBlog(props) {
     const [previewImageUrl, setPreviewImageUrl] = useState(null)
     const [imageActive, setImageActive] = useState(null)
     const [user, setUser] = useState(null)
-    
+    const [goStraight, setGoStraight] = useState(false)
     useEffect(() => {
-        if(user == null){
-            setUser({...UserAPI.getCurrentUser()})
+        if (user == null) {
+            setUser({ ...UserAPI.getCurrentUser() })
         }
     }, [])
 
@@ -65,7 +68,6 @@ function PostBlog(props) {
                 <div className="row">
                     <div className="col-lg-10">
                         <PictureWall handleImageList={(files) => {
-
                             setGuideSteps(
                                 guideSteps.map((item, i) =>
                                     i === index ? { ...item, images: [...files] }
@@ -80,11 +82,11 @@ function PostBlog(props) {
         )
     }
 
-    const onSubmit = (event) => {
+    const onSubmit = async (event) => {
         event.preventDefault();
-        if(!imageActive){
+        if (!imageActive) {
             window.scrollTo(0, 0);
-            openNotificationWithIcon('error',"hey " + user.name, "bạn quên chưa đặt ảnh đẹp nhất của món ăn lên kìa!" )
+            openNotificationWithIcon('error', "hey " + user.name, "bạn quên chưa đặt ảnh đẹp nhất của món ăn lên kìa!")
             return;
         }
         let data = new FormData()
@@ -100,12 +102,8 @@ function PostBlog(props) {
         guideSteps.forEach(guideStep => {
             let imagePaths = []
             let listImageInThisStep = guideStep.images
-            console.log(listImageInThisStep)
-            if (listImageInThisStep.length > 0) {
+            if (listImageInThisStep != null && listImageInThisStep.length > 0) {
                 imagePaths = listImageInThisStep.map(image => {
-                // let timestamp = getEpochMiliesTime()
-                // let newNameImage = ( timestamp + image.originFileObj.name)
-                // image.originFileObj = {...image.originFileObj, name: newNameImage}
                     imageUploads.push(image.originFileObj)          // đẩy nội dung file gốc vào danh sách file upload để cho vào formData
                     return (PATH_UPLOAD + image.originFileObj.name);
                 })
@@ -117,26 +115,30 @@ function PostBlog(props) {
             }
             blog.guideSteps = [...blog.guideSteps, guideStepTmp]
         });
-        
-        console.log("blog: ", blog)
-        console.log("images: ", imageUploads)
         for (let k = 0; k < imageUploads.length; k++) {
             data.append('image_' + k, imageUploads[k])
         }
-        data.append('image_active',imageActive)
-        data.append('blog', JSON.stringify(blog))
+        data.append('image_active', imageActive)
         console.log(data)
-        BlogAPI.postBlog(data)
-        .then(res =>{
+
+
+        let resBlog = await BlogAPI.postBlog(blog);
+        if (resBlog.status) {
+            let resImage = await BlogAPI.postImagesBlog(data)
+            console.log("response images post: ", resImage)
             message.success('Đăng bài viết thành công!')
-            console.log("post success: ", res.data)
-        }).catch(err => {
-            console.log("post error: ", err)
-        })
+            console.log("post success: ", resBlog.data)
+            setGoStraight(true)
+        }
+        else {
+            message.error('có lỗi xảy ra.. tôi cũng không biết.. xin thử lại sau')
+            console.log(resBlog)
+        }
+
 
     }
 
-    const getEpochMiliesTime = () => 	Math.floor(new Date().getTime()/1000.0);
+    const getEpochMiliesTime = () => Math.floor(new Date().getTime() / 1000.0);
 
     const onChangeImageActive = (event) => {
         let image = event.target.files[0]
@@ -155,71 +157,81 @@ function PostBlog(props) {
         setImageActive(null)
     }
 
-    const openNotificationWithIcon = (type,title, descriptions) => {
+    const openNotificationWithIcon = (type, title, descriptions) => {
         notification[type]({
-          message: title,
-          description: descriptions
+            message: title,
+            description: descriptions
         });
-      };
+    };
+
+    const { Option } = Select;
 
     return (
-        <div className="container">
-            <div className="row">
-                <div className="col-lg-10">
-                    <div className="container mt-5">
-                        <form name="blog" id="contactForm" encType="multipart/form-data">
-                            <select className="control-group mb-3" value={headBlog.privicy} name="privicy" onChange={onChange}>
-                                <option value={true}>Công khai</option>
-                                <option value={false}>Riêng tư</option>
-                            </select>
-                            <div className="container">
-                                {/* <img className="mb-3 fadeIn"
-                                        width='100%' src="https://www.amerikickkansas.com/wp-content/uploads/2017/04/default-image.jpg"></img> */}
-                                {
-                                    previewImageUrl == null ?
-                                        <span className="">
-                                            <div className="fileupload text-primary">
-                                                <input type="file" onChange={onChangeImageActive} />
-                                                Thêm ảnh
-                                            </div>
-                                        </span>
-                                        : <div className="show-image">
-                                            <button onClick={onDeletePreviewImage} className="delete btn btn-warning">X</button>
-                                            <img className="item-image" src={previewImageUrl.url} width='100%'></img>
-                                            
+        goStraight ?
+            <Redirect to={`/users/${user.name}/profile`} />
+            :
+            <div className="container" style={{ background: '#fafafa' }}>
+                <div className="row" style={{ paddingLeft: '135px', paddingBottom: '50px' }}>
+                    <div className="col-lg-10" >
+                        <div className="container mt-5">
+                            <form name="blog" id="contactForm" encType="multipart/form-data">
+
+                                <Select value={headBlog.privicy}
+                                     onChange={(value) => setHeadBlog({...headBlog, privicy: value})} style={{ width: 150 }}>
+                                    <Option value={true}>
+                                    <GlobalOutlined />  Công khai
+                                    </Option>
+                                    <Option value={false}>
+                                    <LockOutlined />  Riêng tư
+                                    </Option>
+                                </Select>
+                                
+                                <div className="container mt-3">
+                                    <div className="side-blog-img" style={{ marginLeft: '-38px', background: 'rgb(255, 241, 184)' }}>
+                                        {
+                                            previewImageUrl == null
+                                                ? <p style={{ marginTop: '30%' }}>Đặt ảnh món ăn khi bạn đã hoàn thiện ở đây nhé!</p>
+                                                : <img className="img-fluid" src={previewImageUrl.url} alt="" />
+                                        }
+                                        <div className="date-blog-up">
+                                            <CameraOutlined className="camera" />
+                                            <input type="file" onChange={onChangeImageActive} />
                                         </div>
-                                }
-                            </div>
-
-                            <div className="control-group mt-5">
-                                <div className="form-group floating-label-form-group controls">
-                                    <input type="text" className="form-control-blog" placeholder="Bạn nấu gì hôm nay?" name="title" value={headBlog.title}
-                                        onChange={onChange}
-                                        required data-validation-required-message="Please enter your name." aria-invalid="false" />
-                                    <p className="help-block text-danger" />
+                                    </div>
                                 </div>
-                            </div>
-                            <hr />
-                            <div className="control-group">
-                                <div className="form-group floating-label-form-group controls">
-                                    <input type="text" className="form-control-blog" placeholder="nguyên liệu" name="raw" value={headBlog.raw}
-                                        onChange={onChange}
-                                        required data-validation-required-message="Please enter your name." aria-invalid="false" />
-                                    <p className="help-block text-danger" />
+
+                                <div className="control-group mt-5">
+                                    <div className="form-group floating-label-form-group controls">
+                                        <input type="text" className="form-control-blog" placeholder="Bạn nấu gì hôm nay?" name="title" value={headBlog.title}
+                                            onChange={onChange}
+                                            required data-validation-required-message="Please enter your name." aria-invalid="false" />
+                                        <p className="help-block text-danger" />
+                                    </div>
                                 </div>
-                            </div>
-                            <hr />
+                                <hr />
+                                <div className="control-group">
+                                    <div class="md-form">
+                                        <textarea id="form7"
+                                            placeholder="Nguyên liệu cho món ăn của bạn?"
+                                            class="md-textarea form-control-blog"
+                                            rows="3"
+                                            name="raw" value={headBlog.raw}
+                                            onChange={onChange}
+                                        />
+                                    </div>
+                                </div>
+                                <hr />
 
-                            {renderStep()}
+                                {renderStep()}
 
-                            <p className="next-step" onClick={onClickAddStep}>+ Next step</p>
+                                <p className="next-step" onClick={onClickAddStep}>+ Next step</p>
 
-                            <button className="save-blog text-light" onClick={onSubmit}>Save</button>
-                        </form>
+                                <button className="save-blog text-light" onClick={onSubmit}>Save</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
     );
 
 

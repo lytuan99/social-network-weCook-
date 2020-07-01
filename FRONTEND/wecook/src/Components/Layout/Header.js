@@ -9,7 +9,8 @@ function Header(props) {
         showLogin: true,
         showSignup: true,
         showNewDish: false,
-        showProfile: false
+        showProfile: false,
+        showListUser: false
     }
 
     const [show, setShow] = useState(initialShow)
@@ -23,11 +24,13 @@ function Header(props) {
                 showLogin: false,
                 showSignup: false,
                 showNewDish: true,
-                showProfile: true
+                showProfile: true,
+                showListUser: userCrr.roles.length > 1 ? true : false
             })
             setUser({
                 name: userCrr.name, 
-                id: userCrr.id
+                id: userCrr.userId,
+                avatar: userCrr.avatar ? userCrr.avatar : null
             })
         }
     }, [])
@@ -42,11 +45,8 @@ function Header(props) {
     }
 
     const menu = (<Menu>
-        <Menu.Item key="1">
-            <Link to={`${user.name}/profile`} className="dropdown-item">Profile</Link>
-        </Menu.Item>
-        <Menu.Item key="2" icon={<UserOutlined />}>
-            2nd menu item
+        <Menu.Item key="1" style={{background: '#ffe58f'}}>
+            <Link to={`/users/${user.name}/profile`} className="dropdown-item" >Profile</Link>
         </Menu.Item>
         <Menu.Item key="3" onClick={logout} icon={<UserOutlined />}>
             Log Out
@@ -55,11 +55,11 @@ function Header(props) {
 
 
     return (
-        <header className="top-navbar">
-            <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+        <header className="top-navbar" style={{background: '#ffbb96'}}>
+            <nav className="navbar navbar-expand-lg navbar-light sticky-top">
                 <div className="container">
                     <Link className="navbar-brand decoration-none" to={"/"}>
-                        <img src="images/logo2.png" alt="" style={{ width: '150px', height: '60px' }} />
+                        <img src="/images/wecook.png" alt="" style={{ width: '150px' }} />
                     </Link>
                     <div className="collapse navbar-collapse" id="navbars-rs-food">
                         <ul className="navbar-nav ml-auto">
@@ -81,16 +81,23 @@ function Header(props) {
                             </li>
                         </ul>
                     </div>
+
+                    {show.showListUser && (
+                            <span className="nav-item active"><Link to={"/list-user"} className="nav-link">Danh sách người dùng</Link></span>
+                        )
+                    }
                     {show.showProfile && (
                     <div className="collapse navbar-collapse" id="user_area">
-                        <ul className="navbar-nav ml-auto">
+                        <ul className="navbar-nav ml-auto" style={{background: '#ffe58f'}}>
                             <Dropdown.Button
                             overlay={menu}
                             placement="bottomCenter" 
                             size="large"
-                            style={{backgroundColor: '#fa8c16', border: '1px solid #fa8c16', borderRadius: '5px', verticalAlign: 'center'}}
-                            icon={<Avatar src="/images/img-03.jpg" size="medium" icon={<UserOutlined />} />}>
-                                        Lý Tuấn
+                            style={{ border: '1px solid #fa8c16', borderRadius: '5px', verticalAlign: 'center'}}
+                            icon={<Avatar
+                             src={UserAPI.getCurrentUser().avatar ? "/" + UserAPI.getCurrentUser().avatar : "https://cdn1.iconfinder.com/data/icons/user-pictures/100/unknown-512.png"} 
+                             size="medium" icon={<UserOutlined />} />}>
+                                        {user.name}
                                     </Dropdown.Button>
                         </ul>
                     </div>

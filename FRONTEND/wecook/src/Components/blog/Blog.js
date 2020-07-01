@@ -1,18 +1,23 @@
 import React, { Component } from 'react'
 import { Button, Avatar, Card } from 'antd';
 import { EditOutlined, SaveOutlined, UserOutlined } from '@ant-design/icons';
-
+import {Link} from 'react-router-dom'
 
 function Blog({blog}) {
 
+    
+
     const { Meta } = Card;
     return (
-        <Card className="mx-2 my-4">
+        <Card className="mx-2 my-4" style={{background: '#fff566'}}>
             <div className="row">
-                    {/* add avatar in here */}
-                <div className="col-sm-2"><Avatar src="/images/img-03.jpg" size={40} icon={<UserOutlined />}/></div>
+                <div className="col-sm-2">
+                    <Avatar src={blog.user.avatar ? "/" + blog.user.avatar : "https://cdn1.iconfinder.com/data/icons/user-pictures/100/unknown-512.png"} size={40} icon={<UserOutlined />}/>
+                </div>
                 <div className="col-sm-8">
-                    <strong className="ml-2">{blog.user.name}</strong>
+                    <Link to={`/users/${blog.user.name}`} className="text-decoration-none">
+                        <strong className="ml-2 text-dark">{blog.user.name}</strong>
+                    </Link>
                 <p className="ml-2">2 giờ trước</p>
                 </div>
                 <div className="col-sm-2">
@@ -20,13 +25,16 @@ function Blog({blog}) {
                 </div>
             </div>
             <hr style={{marginTop: '-10px'}}></hr>
-            <Card
-                hoverable
-                style={{ width: 240 }}
-                cover={<img alt="example" src={ blog.guideSteps[0].imagePaths[0]} />}
-            >
-                <Meta title={blog.title} description={blog.raw} />
-            </Card>
+            <Link to={`users/${blog.user.name}/blogs/${blog._id}`} className="text-decoration-none">
+                <Card
+                    hoverable
+                    style={{ width: 240 }}
+                    cover={<img alt="example" src={"/" + blog.pathImageActive} />}
+                >
+                    <Meta title={blog.title} description={<p>{blog.raw}</p>} />
+                </Card>
+            </Link>
+           
         </Card>
         
         )

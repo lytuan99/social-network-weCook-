@@ -53,6 +53,8 @@ const UserSchema = new mongoose.Schema({
             ref: "Role"
         }
     ]
+
+    
 });
 var User = mongoose.model('User',UserSchema);
 

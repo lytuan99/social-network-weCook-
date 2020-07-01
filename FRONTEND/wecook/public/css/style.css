@@ -185,7 +185,7 @@ button:focus{
 
 .after_scroll{
     padding: 0 !important;
-    background-color: rgba(10, 81, 109, 0.541) !important;
+    background-color: #ffe58f !important;
 }
 
 .top-navbar .navbar-light .navbar-nav .nav-link{
@@ -204,11 +204,11 @@ button:focus{
 }
 
 .top-navbar .navbar-light .navbar-nav .nav-item .nav-link:hover{
-	background: #d65106;
+	background: #fa541c;
 	color: #ffffff;
 }
 .top-navbar .navbar-light .navbar-nav .nav-item.active .nav-link{
-	background: #d65106;
+	background: #fa541c;
 	color: #ffffff;
 	border-radius: 4px;
 }
@@ -235,11 +235,11 @@ button:focus{
 #user_area .dropdown-toggle a.dropdown-item:hover {}
 
 .navbar-expand-lg .navbar-nav .dropdown-menu a.dropdown-item:hover{
-	background: #d65106;
+	background: #fa541c;
 	color: #ffffff;
 }
 .navbar-light .navbar-toggler:hover{
-	background: #d65106;
+	background: #fa541c;
 }
 
 
@@ -660,6 +660,11 @@ button:focus{
     -webkit-transition: all 1s ease 0.01s;
     transition: all 1s ease 0.01s;
     position: relative;
+    overflow: hidden;
+    width: 838px;
+    height: 480px;
+    text-align: center;
+    vertical-align: center;
 }
 
 .date-blog-up {
@@ -669,7 +674,11 @@ button:focus{
     background: #d65106;
     font-size: 18px;
     color: #ffffff;
-    padding: 5px 15px 5px 5px;
+    padding: 15px 20px 15px 20px;
+}
+
+.date-blog-up:hover{
+    cursor: pointer;
 }
 .inner-blog-detail {
     background: #ffffff;
@@ -697,7 +706,7 @@ button:focus{
     border-left: 5px solid #d65106;
 }
 .details-page blockquote {
-    padding: 20px;
+    padding: 10px;
 }
 blockquote {
     margin: 20px 0 20px;
@@ -926,6 +935,7 @@ blockquote {
     -o-transition: all 0.5s ease;
 }
 .recent-box-blog:hover .recent-img::before {
+    cursor: pointer;
     transform: scale(1);
     -webkit-transform: scale(1);
     -moz-transform: scale(1);

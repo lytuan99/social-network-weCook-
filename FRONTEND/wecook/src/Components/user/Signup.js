@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import {Input} from 'antd'
 import { Redirect } from 'react-router-dom';
 import UserAPI from '../../api/user'
 function Signup(props) {
@@ -7,7 +8,7 @@ function Signup(props) {
         name: '',
         password: '',
         gender: '',
-        birthDay: null,
+        birthday: null,
         email: '',
         phoneNumber: '',
         city: '',
@@ -39,7 +40,7 @@ function Signup(props) {
             <div className="col-lg-5 col-md-5 ml-5">
                 <div className="ml-auto mr-auto">
                     <h3 className="lead mt-5 text-center">
-                        weCook - social network largest in the world
+                        WECOOK - MẠNG XÃ HỘI ẨM THỰC LỚN NHẤT THẾ GIỚI
                         </h3>
                     <img src="images/img-03.jpg" className="" alt="we cook sign in"></img>
                 </div>
@@ -49,62 +50,46 @@ function Signup(props) {
             <div className="col-lg-5 col-md-5 mx-auto">
                 <form className="container" name="sentMessage" id="contactForm" onSubmit={onSubmit}>
 
-                    <div className="control-group">
-                        <div className="form-group floating-label-form-group controls">
-                            <label>Name</label>
-                            <input type="text" className="form-control"
-                                 placeholder="Enter name" name="name" value={user.name} onChange={onChange}
-                                required data-validation-required-message="Please enter name." />
-                            <p className="help-block text-danger" />
+                        <div className="mt-5">
+                            <label>Tên</label>
+                            <Input type="text" placeholder="Nhập tên..." 
+                            name="name" value={user.name} onChange={onChange}></Input>
+                            
                         </div>
-                    </div>
 
-                    <div className="control-group">
                         <div className="form-group floating-label-form-group controls">
-                            <label>Password</label>
-                            <input type="password" className="form-control"
-                                 placeholder="Enter password" name="password" value={user.password} onChange={onChange}
-                                required data-validation-required-message="Please enter password." aria-invalid="false" />
-                            <p className="help-block text-danger" />
+                            <label>Mật khẩu</label>
+                            <Input type="password" placeholder="Nhập mật khẩu..." 
+                            name="password" value={user.password} onChange={onChange}></Input>
+                            
                         </div>
-                    </div>
 
                     <div className="control-group my-2">
                         <select className="mr-5" value={user.gender} onChange={onChange} name="gender">
-                            <option  >Gender</option>
-                            <option value='male'>male</option>
-                            <option value='female'>female</option>
+                            <option  >giới tính</option>
+                            <option value='nam'>Nam</option>
+                            <option value='nữ'>Nữ</option>
                         </select>
-                        <label htmlFor="birthday">Birthday</label>
+                        <label htmlFor="birthday">Sinh nhật  </label>
                         <input type="date" id="birthday" name="birthday" value={user.birthday} onChange={onChange} />
                     </div>
 
 
-                    <div className="control-group">
                         <div className="form-group floating-label-form-group controls">
-                            <label>Email Address</label>
-                            <input type="email" className="form-control" placeholder="Enter email" name="email" onChange={onChange} value={user.email}
-                                required data-validation-required-message="Please enter email." />
-                            <p className="help-block text-danger" />
+                            <label>Email</label>
+                            <Input type="email" placeholder="Nhập email.." 
+                            name="email" onChange={onChange} value={user.email}></Input>
                         </div>
-                    </div>
-                    <div className="control-group">
-                        <div className="form-group col-xs-12 floating-label-form-group controls">
-                            <label>Phone Number</label>
-                            <input type="tel" className="form-control"
-                                 placeholder="Enter phone number" name="phoneNumber" onChange={onChange} value={user.phoneNumber}
-                                required data-validation-required-message="Please enter phone number." />
-                            <p className="help-block text-danger" />
-                        </div>
-                    </div>
-                    <div className="control-group">
+                        <div className="my-3">
+                            <label>Số điện thoại</label>
+                            <Input type="text" placeholder="Nhập số điện thoại..." 
+                           name="phoneNumber" onChange={onChange} value={user.phoneNumber}></Input>
+                        </div >
                         <div className="form-group floating-label-form-group controls">
-                            <label>City</label>
-                            <input type="text" className="form-control"
-                                 placeholder="Enter city where you live" name="city" onChange={onChange} value={user.city} />
-                            <p className="help-block text-danger" />
+                            <label>Thành phố bạn sống</label>
+                            <Input type="text" placeholder="thành phố..." 
+                           name="city" onChange={onChange} value={user.city} ></Input>
                         </div>
-                    </div>
                     <br />
                     {message && (
                         <div className="control-group">
@@ -116,7 +101,7 @@ function Signup(props) {
                         </div>
 
                     )}
-                    <button type="submit" value="Submit" className="btn btn-primary">Sign Up</button>
+                    <button type="submit" value="Submit" className="btn btn-primary">Đăng ký ngay</button>
                 </form>
             </div>
             <div className="col-lg-1 col-md-1 mx-auto"></div>

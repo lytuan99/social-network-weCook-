@@ -1,7 +1,8 @@
 var express = require('express');
-// var router = express.Router();
+var router = express.Router();
 const {verifySignUp, authJwt} = require('../middleWare/index')
 const userController = require('../controller/userController');
+const { user } = require('../models/Index');
 
 module.exports = function(app) {
   app.use(function(req, res, next) {
@@ -25,7 +26,21 @@ module.exports = function(app) {
      userController.getProfile
   );
 
+  app.get('/users/:name',
+          userController.getProfile);
+  
+  app.put('/api/auth/users/:idUser',
+          userController.updateUser);
+
+  app.post('/avatar/users/:idUser', userController.changeAvatar)
+  
   app.post('/api/auth/login', userController.loginUser);
+
+  app.get('/users', userController.getAllUser)
+
+  app.get('/count/users', userController.countUser)
+
+  app.get('/count/blogs/:idUser', userController.countBlogOfUser)
 
 };
 

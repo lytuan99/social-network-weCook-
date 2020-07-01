@@ -86,32 +86,14 @@
 /* input[type="file"] {
     display: none;
 } */
-.fileupload {
-    height: 70px;
-    position: relative;
-    overflow: hidden;
-    border: 1px solid saddlebrown;
-    text-align: center;
-    padding: 100px;
-}
 
-.fileupload input {
-
-    position: absolute;
-    top: 0;
-    right: 0; /* not left, because only the right part of the input seems to
-                 be clickable in some browser I can't remember */
-    cursor: pointer;
-    opacity: 0.0;
-    filter: alpha(opacity=0); /* and all the other old opacity stuff you
-                                 want to support */
-    font-size: 300px; /* wtf, but apparently the most reliable way to make
-                         a large part of the input clickable in most browsers */
-    height: 200px;
-}
 
 .delete{
     display: none;
+    left: 95%;
+    top: 2%;
+    font-size: 40px;
+    color: #fadb14;
 }
 .show-image:hover .delete {
     display: block;
@@ -154,4 +136,117 @@ div.show-image button.delete {
     font-size: large;
     font-weight: 700;
 
+}
+
+.downOutline{
+    text-align: center;
+    margin-left: 50%;
+    margin-top: 7%;
+    font-size: 40px;
+}
+
+.downOutline:hover{
+    cursor: pointer;
+    color: rgb(248, 215, 29);
+}
+
+.selectPrivicy:hover{
+    cursor: pointer;
+    background: rgb(70, 241, 70);
+}
+
+.deleteBlog:hover{
+    cursor: pointer;
+    background: rgb(240, 38, 38);
+    color: white;
+    padding: 4px 6px 5px 6px;
+    border-radius: 4px;
+}
+
+.editBlog:hover{
+    cursor: pointer;
+}
+
+.save-blog-edit{
+    background: #f05209;
+    border: 1px solid #f33d3d;
+    width: 90px;
+    height: 32px;
+    border-radius: 4px;
+    top: 93%;
+    margin-left: 30px;
+}
+
+.date-blog-up input {
+    width: 102%;
+    height: 58px;
+    position: absolute;
+    cursor: pointer;
+    opacity: 0.0;
+    filter: alpha(opacity=0);
+    margin-top: -43px;
+    margin-left: -21px;
+}
+.date-blog-up input:hover{
+    cursor: pointer;
+}
+ .camera:hover{
+    cursor: pointer;
+}
+
+.avatar{
+    position: relative;
+    width: 8%;
+    margin: auto;
+}
+
+.avatar:hover{
+    opacity: 0.4;
+    cursor: pointer;
+
+}
+
+
+.fileupload {
+    overflow: hidden;
+}
+
+.fileupload input {
+
+    position: absolute;
+    top: 0;
+    right: 0; /* not left, because only the right part of the input seems to
+                 be clickable in some browser I can't remember */
+    cursor: pointer;
+    opacity: 0.0;
+    filter: alpha(opacity=0); /* and all the other old opacity stuff you
+                                 want to support */
+}
+
+
+.fileupload:hover div.cam {
+    display: block;
+}
+
+
+.uploadAvatar{
+    width: 65px;
+    height: 70px;
+    margin-right: 10px;
+    margin-top: 4px;
+}
+
+.image-step{
+    overflow: hidden;
+    padding: 3px;
+    width: 190px;
+    height: 110px;
+    border: 1px solid gray;
+}
+
+.friendCook{
+    display: inline-block;
+    width: 100px;
+    text-align: center;
+    margin: 5px 5px 5px 5px;
 }

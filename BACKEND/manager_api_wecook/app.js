@@ -2,8 +2,9 @@ var express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require("cors");
+var multer = require('multer');
 const connectDB = require('./models/connect');
-
+var blogController = require('./controller/blogController');
 //  var userRouter = require('./routes/usersRoute');
  var blogRouter = require('./routes/blogRoute');
  const db = require('./models/Index')
@@ -27,6 +28,9 @@ app.get('/', (req, res) => {
 
 require('./routes/usersRoute')(app);
 require('./routes/blogRoute')(app);
+require('./routes/commentRoute')(app);
+require('./routes/favoriteRoute')(app);
+require('./routes/followRoute')(app);
 
 function initial() {
   Role.estimatedDocumentCount((err, count) => {
