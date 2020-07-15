@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import BlogAPI from '../../api/blog'
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 export default function CurrentBlog() {
 
     const [listBlogCurr, setListBlogCurr] = useState([])
-
+    let history = useHistory()
     useEffect(() => {
         rechieveCurrentBlogs()
     }, [])
@@ -25,7 +25,7 @@ export default function CurrentBlog() {
                 listBlogCurr.map(item => {
                    return (
                     <div className="recent-box-blog">
-                        <Link to={`users/${item.user.name}/blogs/${item._id}`} className="text-decoration-none">
+                        <Link to={`/users/${item.user.name}/blogs/${item._id}`}>
                         <div className="recent-img" style={{width: "30%"}}>
                             {
                                 !item.pathImageActive ? 
@@ -36,7 +36,6 @@ export default function CurrentBlog() {
                             
                         </div>
                         </Link>
-                        
                         <div className="recent-info">
                             <ul>
                                 <li><i className="zmdi zmdi-account" />Đăng bởi: <strong>{item.user.name} </strong></li>

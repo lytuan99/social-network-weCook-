@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Button, Avatar, Card } from 'antd';
 import { EditOutlined, SaveOutlined, UserOutlined } from '@ant-design/icons';
 import {Link} from 'react-router-dom'
+import caculateTime from '../../util/CaculateDate'
 
 function Blog({blog}) {
 
@@ -18,7 +19,7 @@ function Blog({blog}) {
                     <Link to={`/users/${blog.user.name}`} className="text-decoration-none">
                         <strong className="ml-2 text-dark">{blog.user.name}</strong>
                     </Link>
-                <p className="ml-2">2 giờ trước</p>
+                <p className="ml-2">{caculateTime.getPeriodTimeBefore(blog.createTime)}</p>
                 </div>
                 <div className="col-sm-2">
     <span className="glyphicon glyphicon-heart">  {blog.favorites}</span>

@@ -250,3 +250,14 @@ div.show-image button.delete {
     text-align: center;
     margin: 5px 5px 5px 5px;
 }
+
+.mySearch{
+    width: 230px;
+    background-color: transparent;
+    border: 2px solid #d75127;
+    border-radius: 20px;
+    height: 40px;
+    text-align: center;
+    font-weight: bolder;
+    color: rgb(83, 81, 80);
+}

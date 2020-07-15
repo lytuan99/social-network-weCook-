@@ -33,6 +33,7 @@ module.exports = function(app) {
 
     app.get('/current/blogs', blogController.getCurrentBlog)
 
+    app.delete('/blogs', blogController.deleteBlog)
 
     app.post('/blogs', (req, res) => {
         console.log(req.body)

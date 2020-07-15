@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom';
-import { Button, Avatar, Menu, Dropdown, message, Tooltip } from 'antd';
+import { Link, Redirect, useHistory} from 'react-router-dom';
+import { Button, Avatar, Menu, Dropdown, message, Tooltip, Input } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import UserAPI from '../../api/user'
 import Item from 'antd/lib/list/Item';
-function Header(props) {
+function Header() {
     const initialShow = {
         showLogin: true,
         showSignup: true,
@@ -12,10 +12,11 @@ function Header(props) {
         showProfile: false,
         showListUser: false
     }
-
     const [show, setShow] = useState(initialShow)
     const [user, setUser] = useState({name: '', avatar: null, id: null})
-
+    const [searchRedirect, setSearchRedirect] = useState(false)
+    const [key, setKey] = useState(null)
+    let history = useHistory()
     useEffect(() => {
         const userCrr = UserAPI.getCurrentUser();
         if (userCrr) {
@@ -33,6 +34,7 @@ function Header(props) {
                 avatar: userCrr.avatar ? userCrr.avatar : null
             })
         }
+        
     }, [])
 
 
@@ -40,7 +42,7 @@ function Header(props) {
         UserAPI.logout()
         window.scrollTo(0, 0)
         setShow({ ...initialShow })
-        // props.history.push("/");
+        history.push(`/login`, null);
         // window.location.reload();
     }
 
@@ -53,8 +55,23 @@ function Header(props) {
         </Menu.Item>
     </Menu>);
 
+    const onEnterSearch = (e) => {
+        if(e.keyCode == 13){
+            setSearchRedirect(true);
+            history.push(`/search?key=${key}`, {key: key})
+        }
+        
+    }
+
+    const onChangeSearch = (e) => {
+        setKey(e.target.value)
+    }
+
+
+
 
     return (
+        
         <header className="top-navbar" style={{background: '#ffbb96'}}>
             <nav className="navbar navbar-expand-lg navbar-light sticky-top">
                 <div className="container">
@@ -77,7 +94,13 @@ function Header(props) {
                             )}
 
                             <li className="nav-item" style={{ marginLeft: '10px' }}>
-                                <input className="nav-link btn btn-primary" type="text" placeholder="Tim kiem" style={{ color: 'rgba(0, 0, 0, 0.5)' }} />
+                                <input type="text"
+                                className="mySearch"
+                                 placeholder="Tìm kiếm"
+                                 onKeyDown={onEnterSearch}
+                                  onChange={onChangeSearch}
+                                  value={key}
+                                 />
                             </li>
                         </ul>
                     </div>

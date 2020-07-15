@@ -55,6 +55,7 @@ const blog = new mongoose.Schema({
     })
 
 blog.plugin(mongoosePaginate);
+blog.index({title: 'text', raw: 'text'})
 const Blog = mongoose.model("Blog", blog) 
 
 module.exports = Blog;

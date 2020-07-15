@@ -11,23 +11,22 @@ export default function OtherProfile(props) {
     const [blogs, setBlogs] = useState([])
     const [show, setShow] = useState({ blogs: false })
     const [isRedirect, setIsRedirect] = useState(false)
-    const [userAuthorized, setUserAuthorized] = useState({name: UserAPI.getCurrentUser() ? UserAPI.getCurrentUser() : ''})
     const [isFollow, setIsFollow] = useState(false)
     const [listFollow, setListFollow] = useState([])
     const [amountBlog, setAmountBlog] = useState(Number)
 
+
     useEffect(() => {
+        console.log("change: ",props)
         let userAuth = UserAPI.getCurrentUser();
         if(userAuth && userAuth.name == props.match.params.name){
             setIsRedirect(true)
             return;
         }
-        else if(userIntro.name == '') {
-               getProfileOther();
-              
-        }
+        getProfileOther();
         console.log(userIntro)
-    }, [])
+    }, [props.match.params.name])
+
 
 
     const getProfileOther =async () => {
@@ -119,7 +118,7 @@ export default function OtherProfile(props) {
 
     
     return (
-        isRedirect ? <Redirect to={`/users/${userAuthorized.name}/profile`}/>
+        isRedirect ? <Redirect to={`/users/${props.match.params.name}/profile`}/>
         :
             <div>
                 <div className="blog-box">

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { Comment, Avatar, Form, Button, List, Input, message } from 'antd';
 import moment from 'moment';
-import {Redirect} from 'react-router-dom'
+import {Redirect, Link} from 'react-router-dom'
 import CommentAPI from '../../api/comment'
 import UserAPI from '../../api/user'
+import caculateTime from '../../util/CaculateDate'
 const { TextArea } = Input;
 
-export default function BlogDetail({ blog }) {
-
+export default function BlogDetail({blog}) {
     const [user, setUser] = useState({ name: '', id: '' })
     const [comments, setComments] = useState([])
     const [submitting, setSubmitting] = useState(false)
@@ -140,15 +140,19 @@ export default function BlogDetail({ blog }) {
                     <div className="side-blog-img">
                         <img className="img-fluid" src={"/" + blog.pathImageActive} alt="" />
                         <div className="date-blog-up">
-                            27 Fab
+                            
                             </div>
                     </div>
                     <div className="inner-blog-detail details-page">
                         <h2>{blog.title}</h2>
                         <ul>
-                            <li><i className="zmdi zmdi-account" />Posted By : <span>{blog.user.name}</span></li>
+                            <li><i className="zmdi zmdi-account" />Đăng bởi: 
+                            <span><Link to={`/users/${blog.user.name}`} className="text-decoration-none " style={{color: '#d65106'}}>
+                                {" " + blog.user.name}
+                                </Link></span>
+                            </li>
                             <li>|</li>
-                            <li><i className="zmdi zmdi-time" />Time : <span>{blog.createTime}</span></li>
+                            <li><i className="zmdi zmdi-time" />Thời gian : <span>{caculateTime.getPeriodTimeBefore(blog.createTime)}</span></li>
                             <li>|</li>
                             <span className="glyphicon glyphicon-heart text-danger" style={{ fontSize: '20px' }} /> <span> {blog.favorites}</span>
                         </ul>

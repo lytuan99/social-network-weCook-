@@ -12,18 +12,8 @@ import ReaderBlogPage from './Components/ReaderBlogPage';
 import OtherProfile from './Components/user/otherProfile/OtherProfile';
 import EditBlog from './Components/blog/EditBlog'
 import ListUser from './Components/user/managerUser/listUser'
-function App() {
-
-  // const renderRoute = () =>{
-  //   let listRouter = ADMIN_ROUTERS.map((item, index) =>{
-  //       console.log(item)
-  //     return <Route
-  //             key={index} path={item.path} component={item.component}
-  //           />
-  //   })
-  //   return listRouter;
-  // }
-
+import Search from './Components/Search';
+function App(props) {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
 
   useEffect(() => {
@@ -46,8 +36,8 @@ function App() {
 
   return (
     <div style={{background: 'rgb(255, 241, 184)'}}> 
-      <Router>
-        <Header/>
+      <Router >
+      <Header/>
             <Switch>
             <Route exact path="/" component={Home} exact/>
             <Route path="/login" component={Login} />
@@ -58,6 +48,7 @@ function App() {
             <PrivateRoute path='/post-blog' component={PostBlog}/>
             <PrivateRoute path="/users/:userName/blogs/:idBlog/edit" component={EditBlog}/>
             <PrivateRoute path="/list-user" component={ListUser}/>
+            <Route exact path="/search?key=:key" component={Search} />
           </Switch>
           
       </Router>

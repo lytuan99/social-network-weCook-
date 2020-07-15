@@ -1,6 +1,11 @@
 
 const EXPIRE_TOKEN = 86400000;
-
+const TUNA_FAVORITE = 10;
+const TUNA_COMMENT = 20;
+const TUNA_FOLLOW = 50;
 module.exports = {
-    EXPIRE_TOKEN
+    EXPIRE_TOKEN,
+    TUNA_FAVORITE,
+    TUNA_COMMENT,
+    TUNA_FOLLOW
 }

@@ -9,14 +9,14 @@ import FavoriteAPI from '../api/favorite'
 
 
 export default function ReaderBlogPage(props) {
-
     const [user, setUser] = useState(null)
     const [blog, setBlog] = useState(null)
     const [isRedHeath, setIsRedHeath] = useState(false)
     const [favorite, setFavorite] = useState(Number)
     useEffect(() => {
+        window.scrollTo(0,0);
         rechieveBlog()
-    }, [])
+    }, [props.match.params.idBlog])
 
 
     const rechieveBlog = () => {

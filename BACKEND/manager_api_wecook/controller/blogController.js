@@ -2,10 +2,6 @@ const mongoose = require('mongoose');
 
 var Blog = require('../models/blog');
 var User = require('../models/user')
-var multer = require('multer');
-const {authJwt} = require('../middleWare/index');
-const { isBuffer } = require('lodash');
-const e = require('express');
     
 
 const createBlog = function(req, done) {
@@ -28,13 +24,6 @@ const createBlog = function(req, done) {
     })
     console.log("create Blog end")
 }
-
-// const getAllBlog = async (req, res) => {
-//     let blogs = await Blog.find()
-//                     .populate('user')
-//                     .exec();
-//     res.status(200).send({blogs})
-// }
 
 const getAllBlog = (req, res) => {
     console.log("paging: ", req.params)
@@ -59,15 +48,6 @@ const getAllBlog = (req, res) => {
         }
     })
     
-}
-
-const deleteBlog = async (req, res) => {
-    let idUser = req.body.idUser;
-    let idBlog = req.body.idBlog;
-    return await Blog.findByIdAndRemove(idBlog,  (err, doc) =>{
-        
-        res.status(200).send("thành công!")
-    });
 }
 
 const updateBlog = async (req, res) => {
@@ -122,7 +102,7 @@ const changePrivicy = (req, res) => {
 
 const getCurrentBlog = (req, res) => {
     var options = {
-        sort:     { _id: -1 },
+        sort: { _id: -1 },
         populate: 'user',
         limit: 3,
         page: 1,
@@ -139,6 +119,22 @@ const getCurrentBlog = (req, res) => {
         }
     })
 }
+
+const deleteBlog = async (req, res) => {
+    let idUser = req.params.idUser
+    let idBlog = req.params.idBlog
+    let doc = await Blog.findByIdAndDelete(idBlog)
+    if(doc){
+        res.status(200).send({status: true, message: "xóa thành công"})
+        return;
+    }
+    else{
+        res.status(404).send({status: false,message: "error.. không tìm thấy!"})
+        return;
+    }
+}
+
+
 module.exports = {
    createBlog,
    getAllBlog,
@@ -147,6 +143,8 @@ module.exports = {
    getOneBlog,
    changePrivicy,
    getCurrentBlog,
+   deleteBlog,
+
 
 
 

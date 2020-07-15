@@ -230,7 +230,7 @@ export default function Profile() {
 											<div className="row" >
 												<div className="col-lg-5">
 													<span className="text-info">giới tính:</span>
-													<input type="text" className="form-control" placeholder="Nhập tên...."
+													<input type="text" className="form-control" placeholder="Nhập giới tính...."
 														name="gender" onChange={onChangeUserIntro} value={userIntro.gender}
 													/>
 

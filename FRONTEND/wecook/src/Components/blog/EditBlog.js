@@ -153,10 +153,6 @@ function EditBlog(props) {
                         <div className="inner-blog-detail details-page">
                             
                             <ul>
-                                <li><i className="zmdi zmdi-account" />Posted By : <span>{blog.user.name}</span></li>
-                                <li>|</li>
-                                <li><i className="zmdi zmdi-time" />Time : <span>{blog.createTime}</span></li>
-                                <li>|</li>
                                 <span className="glyphicon glyphicon-heart text-danger" style={{ fontSize: '20px' }} /> <span>{blog.favorites}</span>
                             </ul>
 
